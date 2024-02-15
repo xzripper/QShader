@@ -123,24 +123,25 @@ $$style(STYLE)
 <h2>Overall example.</h2>
 
 ```python
-#thread QTimer 100
+#thread QTimer 10
 
 #pre_define hue 0
-
-#input speed
 
 #import PyQt5.QtGui QColor
 
 #begin_shader
 color = QColor.fromHsv(hue, @@RGB_MAX, @@RGB_MAX)
 
-$$style(f'padding:30px; font-size: 20px; border-radius: 0px; color: black; background-color: {color.name()};')
+$$style(f'background-color: {color.name()}; color: black; border: 0px; font-size: 20px; padding: 30px;')
 
 $$effect(BloomEffect, 250, color)
 
 $$parent.setText(color.name())
 
-hue = (hue + (speed * 2 if @@UNDER_MOUSE else speed)) % 360
+hue = (hue + (2 if @@UNDER_MOUSE else 1)) % 360
 #end_shader
 ```
-Rainbow glowing widget shader.
+Rainbow glowing widget shader.<br>
+
+<img src="shaders.gif">
+<p align="center">⬆</p>
