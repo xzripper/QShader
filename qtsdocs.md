@@ -62,17 +62,17 @@ There are 3 threads:
 
 `%%create`/`%%create+` example:
 ```python
-%%create(WIDGET)
+widget = %%create(WIDGET, *ARGS)
 
-%%create+(WIDGET)
+widget = %%create+(WIDGET, *ARGS)
 ```
 Temporary widgets will be deleted instantly (will be deleted every QTimer.timeout if thread is `QTimer`).<br>
 
 `%%rect`/`%%rect+` example:
 ```python
-%%rect((X, Y, WIDTH, HEIGHT), COLOR)
+rect = %%rect((X, Y, WIDTH, HEIGHT), COLOR)
 
-%%rect+((X, Y, WIDTH, HEIGHT), COLOR)
+rect = %%rect+((X, Y, WIDTH, HEIGHT), COLOR)
 ```
 Temporary rectangles will be deleted instantly (will be deleted every QTimer.timeout if thread is `QTimer`). `COLOR` argument is optional.<br>
 
