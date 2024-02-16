@@ -11,8 +11,8 @@
 
 #begin_shader
 Color1 = QColor.fromHsv(hue, 50, 200)
-Color2 = QColor.fromHsv((hue + 30) % 360, 50, 220)
-Color3 = QColor.fromHsv((hue + 60) % 360, 50, 240)
+Color2 = QColor.fromHsv((hue + 30) % @@HUE_MAX, 50, 220)
+Color3 = QColor.fromHsv((hue + 60) % @@HUE_MAX, 50, 240)
 
 if @@UNDER_MOUSE:
     Gradient = f"qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 {Color1.name()}, stop:{@@MOUSE_POSITION_WIDGET.x() / $$parent.width()} {Color2.name()}, stop:1 {Color3.name()})"
@@ -24,7 +24,7 @@ $$style(f"background: {Gradient}; color: white; border: 0px solid; border-radius
 
 $$effect(BloomEffect, 100, QColor.fromRgb(Color1.red(), Color2.green(), Color3.blue(), @@RGB_MAX))
 
-hue = (hue + 1) % 360
+hue = (hue + 1) % @@HUE_MAX
 #end_shader
 ```
 
@@ -44,7 +44,7 @@ $$effect(BloomEffect, 250, color)
 
 $$parent.setText(color.name())
 
-hue = (hue + (2 if @@UNDER_MOUSE else 1)) % 360
+hue = (hue + (2 if @@UNDER_MOUSE else 1)) % @@HUE_MAX
 #end_shader
 ```
 
@@ -53,4 +53,4 @@ hue = (hue + (2 if @@UNDER_MOUSE else 1)) % 360
 [QShader Documentation.](https://github.com/xzripper/QShader/blob/main/qshader.md)
 [QTS Documentation.](https://github.com/xzripper/QShader/blob/main/qtsdocs.md)
 
-<hr><p align="center"><b>QShader V1.0.0-ALPHA.</b></p>
+<hr><p align="center"><b>QShader V1.1.0-ALPHA.</b></p>
