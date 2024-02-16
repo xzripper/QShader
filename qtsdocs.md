@@ -1,4 +1,4 @@
-# QShader Language. V1.0.0-ALPHA.
+# QShader Language. V1.1.0-ALPHA.
 QShader (QTS) language is a mix of Python and new fancy syntax.
 
 <h2>Keywords.</h2>
@@ -103,6 +103,9 @@ $$style(STYLE)
 * `RGBA_MAX_LIST` = `[255, 255, 255, 255]`
 * `RGBA_MIN_LIST` = `[0, 0, 0, 0]`
 
+* `HUE_MAX` = `360`
+* `HUE_MIN` = `0`
+
 * `RGB_MAX` = `255`
 * `RGB_MIN` = `0`
 
@@ -117,6 +120,8 @@ $$style(STYLE)
 
 <h2>Random functions.</h2>
 
+* `kill_shader_thread()` - Kill shader thread (QTimer).
+* `printf(*values: object, sep: str | None = " ", end: str | None = "\n", file: SupportsWrite[str] | None = None, flush: Literal[False] = False)` - Alternative to `print`.
 * `randint(X, Y)` - Random integer from x to y.
 * `uniform(X, Y)` - Random float from x to y.
 
@@ -138,7 +143,7 @@ $$effect(BloomEffect, 250, color)
 
 $$parent.setText(color.name())
 
-hue = (hue + (2 if @@UNDER_MOUSE else 1)) % 360
+hue = (hue + (2 if @@UNDER_MOUSE else 1)) % @@HUE_MAX
 #end_shader
 ```
 Rainbow glowing widget shader.<br>
