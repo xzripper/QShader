@@ -28,6 +28,12 @@ class BlurEffect:
     def apply(widget: QWidget, power: int) -> None:
         blur = QGraphicsBlurEffect()
 
+        if optimize:
+            blur.setBlurHints(QGraphicsBlurEffect.PerformanceHint)
+
+        else:
+            blur.setBlurHints(QGraphicsBlurEffect.QualityHint)
+
         blur.setBlurRadius((power / 2) if optimize else power)
 
         widget.setGraphicsEffect(blur)

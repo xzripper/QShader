@@ -23,17 +23,17 @@ from importlib import import_module
 from python_minifier import minify
 
 
-QSHADER_VERSION: str = '1.0.0'
+QSHADER_VERSION: str = '1.1.0'
 
 class QShader:
     """QShader class."""
 
     def __init__(self, shader: str) -> None:
         """Initialize shader."""
-        self.shader_file = None
+        self.shader_file: str = None
 
         if shader.endswith('.qts'):
-            self.shader_file = shader
+            self.shader_file: str = shader
 
             with open(shader, 'r') as _shader:
                 self.shader: str = _shader.read()
@@ -45,15 +45,15 @@ class QShader:
 
         self.main_shader: str = None
 
-        self.inputs = {}
+        self.inputs: dict = {}
 
-        self.id = randint(1, 9999)
+        self.id: int = randint(1, 9999)
 
-        self.shader_builtins = {}
+        self.shader_builtins: dict = {}
 
-        self.__current_pre_defs = {}
+        self.__current_pre_defs: dict = {}
 
-        self._shader_globals = {}
+        self._shader_globals: dict = {'printf': print}
 
     def compile_shader(self) -> bool:
         """Compile shader."""
@@ -71,7 +71,7 @@ class QShader:
 
     def apply(self, widget: QWidget, parent: QWidget) -> bool:
         """Apply shader to a widget."""
-        if not self.compiled_shader and not self.compiled_shader.failed:
+        if not self.compiled_shader or self.compiled_shader.failed:
             return False
 
         def run_shader():
@@ -130,7 +130,7 @@ class QShader:
                 'ShadowsEffect': ShadowsEffect, 'ColorizeEffect': ColorizeEffect,
 
                 '_SHADER': self
-            } | self.inputs | self.__current_pre_defs | self.shader_builtins
+            } | self.inputs | self.__current_pre_defs | self.shader_builtins | {'kill_shader_thread': lambda: (timer.killTimer(timer.timerId())) if self.compiled_shader.thread == QTIMER else None}
 
             imported = {}
 

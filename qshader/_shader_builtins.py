@@ -10,6 +10,9 @@ class _S_C:
     RGBA_MAX_LIST = [255, 255, 255, 255]
     RGBA_MIN_LIST = [0, 0, 0, 0]
 
+    HUE_MAX = 360
+    HUE_MIN = 0
+
     RGB_MAX = 255
     RGB_MIN = 0
 
